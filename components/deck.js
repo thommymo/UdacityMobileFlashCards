@@ -7,7 +7,7 @@ const BlueText = styled.Text`
   color: ${white};
   font-family: "source-sans-pro-light";
   font-size: 40px;
-  flex:1;
+    flex:1;
 `
 
 const BlueView = styled.View`
@@ -21,7 +21,7 @@ class Decks extends Component {
   render(){
     return(
       <BlueView>
-        <BlueText>Decks View</BlueText>
+        <BlueText>Deck View</BlueText>
       </BlueView>
     )
   }

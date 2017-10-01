@@ -3,6 +3,7 @@ export const bluegreen = 'rgba(112, 193, 179, 1)'
 export const green = 'rgba(178, 219, 191, 1)'
 export const greenyellow = 'rgba(243, 255, 189, 1)'
 export const red = 'rgba(255, 22, 84, 1)'
+export const white = 'rgba(255, 255, 255, 1)'
 
 export const bluelight = 'rgba(75, 147, 177, 1)'
 export const bluegreenlight = 'rgba(75, 147, 177, 1)'
