@@ -8,6 +8,9 @@ import { blue, red, redlight } from './utils/colors'
 import { Font } from 'expo';
 import { Asset, AppLoading } from 'expo';
 import { TabNavigator } from 'react-navigation';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './reducers'
 
 export default class App extends React.Component {
   state = {
@@ -24,16 +27,18 @@ export default class App extends React.Component {
       )
     }
     return (
-      <View style={{flex: 1}}>
-        <StatusBarView>
-          <StatusBar
-            translucent
-            backgroundColor={blue}
-            barStyle="light-content"
-          />
-        </StatusBarView>
-        <Tabs  style={{flex: 1}}/>
-      </View>
+      <Provider store={createStore(reducer)}>
+        <View style={{flex: 1}}>
+          <StatusBarView>
+            <StatusBar
+              translucent
+              backgroundColor={blue}
+              barStyle="light-content"
+            />
+          </StatusBarView>
+          <Tabs  style={{flex: 1}}/>
+        </View>
+      </Provider>
     )
   }
   async _cacheResourcesAsync() {
@@ -49,17 +54,17 @@ export default class App extends React.Component {
   }
 }
 
-//TODO: Create Component that extends TabNavigator to use css from styled components 
+//TODO: Create Component that extends TabNavigator to use css from styled components
 
 const Tabs = TabNavigator({
-  Deck: {
-    screen: Deck,
+  Decks: {
+    screen: Decks,
     navigationOptions: {
       tabBarLabel: 'Deck View',
     },
   },
-  Decks: {
-    screen: Decks,
+  Deck: {
+    screen: Deck,
     navigationOptions: {
       tabBarLabel: 'Decks View',
     },
