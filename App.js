@@ -4,10 +4,10 @@ import styled from 'styled-components/native'
 import Decks from './components/decks'
 import Deck from './components/deck'
 import { Constants } from 'expo'
-import { blue, red, redlight } from './utils/colors'
+import { blue, red, redlight, white, bluelight } from './utils/colors'
 import { Font } from 'expo';
 import { Asset, AppLoading } from 'expo';
-import { TabNavigator } from 'react-navigation';
+import { StackNavigator } from 'react-navigation';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
@@ -36,7 +36,7 @@ export default class App extends React.Component {
               barStyle="light-content"
             />
           </StatusBarView>
-          <Tabs  style={{flex: 1}}/>
+          <Stack/>
         </View>
       </Provider>
     )
@@ -56,50 +56,30 @@ export default class App extends React.Component {
 
 //TODO: Create Component that extends TabNavigator to use css from styled components
 
-const Tabs = TabNavigator({
+const Stack = StackNavigator({
   Decks: {
     screen: Decks,
     navigationOptions: {
-      tabBarLabel: 'Deck View',
+      title: 'All Cards',
+
     },
   },
   Deck: {
     screen: Deck,
-    navigationOptions: {
-      tabBarLabel: 'Decks View',
-    },
-  },
-},{
-  navigationOptions: {
-    header: null,
-  },
-  tabBarOptions: {
-    inactiveBackgroundColor: redlight,
-    activeBackgroundColor: red,
-    tinColor: '#fff',
-    activeTintColor: '#eee',
-    inactiveTintColor: '#fff',
-    showIcon: true,
-    showLabel: true,
-    lazyLoad: true,
-    upperCaseLabel: false,
-    indicatorStyle: {
-      backgroundColor: red
-    },
-    style: {
-      borderTopWidth: 1,
-      borderTopColor: '#FFF',
-    },
-    labelStyle: {
-      flex: 1,
-      fontSize: 20,
-      fontFamily: 'source-sans-pro-light',
-      paddingBottom: 20,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
+
+    navigationOptions: ({navigation}) => ({
+      title: navigation.state.params.title,
+    }),
   }
-})
+},{
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: blue,
+      },
+    }
+  }
+)
 
 const StatusBarView = styled.View`
   height: ${Constants.statusBarHeight};

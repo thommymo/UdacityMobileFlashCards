@@ -1,50 +1,47 @@
 import React, {Component} from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
-import { white, bluelight, blue } from '../utils/colors'
+import { white, bluelight, blue, bluedark } from '../utils/colors'
 import { connect } from 'react-redux'
+import { StackNavigator } from 'react-navigation'
 
-
-const TitleView = styled.View`
-  min-width: 100%;
-  align-items: center;
-`
-const TitleText = styled.Text`
-  color: ${white};
-  font-family: "source-sans-pro-light";
-  font-size: 40px;
-  height: 50px;
-`
 const BlueView = styled.View`
-  background-color: ${bluelight};
+  background-color: ${blue};
   flex:1;
   align-items: center;
   justify-content: flex-start;
 `
-const DeckView = styled.View`
+const DeckView = styled.TouchableOpacity`
   flex:1;
   min-width: 100%;
   max-height: 120px;
   justify-content: center;
   align-items: center;
-  background-color: ${blue};
-  margin-top:1px;
+  background-color: ${bluelight};
+  margin-bottom:0.5px;
+`
+const DeckTitelText = styled.Text`
+  font-family: 'source-sans-pro-light';
+  font-size: 25px;
+  color: ${white};
+`
+const DeckSubTitelText = styled.Text`
+  font-family: 'source-sans-pro-light';
+  font-size: 15px;
+  color: ${white};
 `
 
 class Decks extends Component {
 
   render(){
-    const { decks } = this.props
+    const { decks, navigation } = this.props
     return(
       <BlueView>
-        <TitleView>
-          <TitleText>Decks View</TitleText>
-        </TitleView>
 
         {Object.keys(decks).map((deckname) => (
-          <DeckView key={deckname}>
-            <Text>{decks[deckname].title}</Text>
-            <Text>{decks[deckname].questions.length} Card(s)</Text>
+          <DeckView key={deckname} onPress={() => navigation.navigate('Deck', { title: decks[deckname].title })}>
+            <DeckTitelText>{decks[deckname].title}</DeckTitelText>
+            <DeckSubTitelText>{decks[deckname].questions.length} Card(s)</DeckSubTitelText>
           </DeckView>
         ))}
 
