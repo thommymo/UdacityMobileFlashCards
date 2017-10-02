@@ -1,35 +1,19 @@
 import React, {Component} from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
-import styled from 'styled-components/native'
-import { white, bluelight, blue, bluedark } from '../utils/colors'
 import { connect } from 'react-redux'
 import { StackNavigator } from 'react-navigation'
-
-const BlueView = styled.View`
-  background-color: ${blue};
-  flex:1;
-  align-items: center;
-  justify-content: flex-start;
-`
-const DeckView = styled.TouchableOpacity`
-  flex:1;
-  min-width: 100%;
-  max-height: 120px;
-  justify-content: center;
-  align-items: center;
-  background-color: ${bluelight};
-  margin-bottom:0.5px;
-`
-const DeckTitelText = styled.Text`
-  font-family: 'source-sans-pro-light';
-  font-size: 25px;
-  color: ${white};
-`
-const DeckSubTitelText = styled.Text`
-  font-family: 'source-sans-pro-light';
-  font-size: 15px;
-  color: ${white};
-`
+import {
+  BlueText,
+  BlueView,
+  DeckView,
+  DeckTitleText,
+  DeckSubTitleText,
+  BlueLightView,
+  ButtonGreen,
+  ButtonText,
+  GridTop,
+  GridBottom,
+  GridFooter
+} from '../components/styledComponents'
 
 class Decks extends Component {
 
@@ -37,15 +21,22 @@ class Decks extends Component {
     const { decks, navigation } = this.props
     return(
       <BlueView>
+        <GridTop>
+          {Object.keys(decks).map((deckname) => (
+            <DeckView key={deckname} onPress={() => navigation.navigate('Deck', { title: decks[deckname].title })}>
+              <DeckTitleText>{decks[deckname].title}</DeckTitleText>
+              <DeckSubTitleText>{decks[deckname].questions.length} Card(s)</DeckSubTitleText>
+            </DeckView>
+          ))}
+        </GridTop>
 
-        {Object.keys(decks).map((deckname) => (
-          <DeckView key={deckname} onPress={() => navigation.navigate('Deck', { title: decks[deckname].title })}>
-            <DeckTitelText>{decks[deckname].title}</DeckTitelText>
-            <DeckSubTitelText>{decks[deckname].questions.length} Card(s)</DeckSubTitelText>
-          </DeckView>
-        ))}
-
+        <GridFooter>
+          <ButtonGreen onPress={() => navigation.navigate('addDeck')}>
+            <ButtonText>Add Deck</ButtonText>
+          </ButtonGreen>
+        </GridFooter>
       </BlueView>
+
     )
   }
 }

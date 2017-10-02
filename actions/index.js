@@ -1,26 +1,35 @@
-const REQUEST_DESKS = 'REQUEST_DESKS'
-const CREATE_NEW_DESK = 'CREATE_NEW_DESK'
-const CREATE_NEW_QUESTION = 'CREATE_NEW_QUESTION'
+export const RECEIVE_DECKS = 'RECEIVE_DECKS'
+export const CREATE_NEW_DECK = 'CREATE_NEW_DECK'
+export const CREATE_NEW_CARD = 'CREATE_NEW_CARD'
+export const UPDATE_SUCCESS = 'UPDATE_SUCCESS'
 
-export function receiveDesks (desks) {
+export function receiveDecks (decks) {
   return {
-    type: RECEIVE_ENTRIES,
+    type: RECEIVE_DECK,
     desks,
   }
 }
 
-export function createNewDesk (deskname) {
+export function createNewDeck (title) {
   return {
-    type: RECEIVE_ENTRIES,
-    deskname,
+    type: CREATE_NEW_DECK,
+    title,
   }
 }
 
-export function createNewQuestion (deskname, question, answer) {
+export function createNewCard (deckname, question, answer) {
   return {
-    type: RECEIVE_ENTRIES,
-    deskname,
+    type: CREATE_NEW_CARD,
+    deckname,
     question,
     answer,
+  }
+}
+
+export function updateSuccess (deckname, correct){
+  return{
+    type: UPDATE_SUCCESS,
+    deckname,
+    correct,
   }
 }

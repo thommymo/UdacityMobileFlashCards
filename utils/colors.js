@@ -1,20 +1,22 @@
-export const blue = 'rgba(36, 123, 160, 1)'
-export const bluegreen = 'rgba(112, 193, 179, 1)'
-export const green = 'rgba(178, 219, 191, 1)'
-export const greenyellow = 'rgba(243, 255, 189, 1)'
-export const red = 'rgba(255, 22, 84, 1)'
+export const blue = 'rgba(18, 135, 204, 1)'
+export const bluegreen = 'rgba(99, 204, 184, 1)'
+export const green = 'rgba(143, 224, 167, 1)'
+export const greenyellow = 'rgba(235, 255, 147, 1)'
+export const red = 'rgba(255, 38, 96, 1)'
+
+export const bluelight = 'rgba(61, 156, 213, 1)'
+export const bluegreenlight = 'rgba(127, 213, 196, 1)'
+export const greenlight = 'rgba(163, 229, 183, 1)'
+export const greenyellowlight = 'rgba(238, 255, 166, 1)'
+export const redlight = 'rgba(255, 77, 124, 1)'
+
+export const bluedark = 'rgba(12, 86, 130, 1)'
+export const bluegreendark = 'rgba(64, 130, 118, 1)'
+export const greendark = 'rgba(92, 143, 107, 1)'
+export const greenyellowdark = 'rgba(150, 163, 94, 1)'
+export const reddark = 'rgba(163, 25, 62, 1)'
+
+export const gray = 'rgba(220, 220, 220, 1)'
 export const white = 'rgba(255, 255, 255, 1)'
-
-export const bluelight = 'rgba(75, 147, 177, 1)'
-export const bluegreenlight = 'rgba(75, 147, 177, 1)'
-export const greenlight = 'rgba(192, 225, 202, 1)'
-export const greenyellowlight = 'rgba(245, 255, 201, 1)'
-export const redlight = 'rgba(255, 64, 115, 1)'
-
-export const bluedark = 'rgba(27, 90, 117, 1)'
-export const bluegreendark = 'rgba(82, 141, 131, 1)'
-export const greendark = 'rgba(130, 160, 139, 1)'
-export const greenyellowdark = 'rgba(177, 186, 138, 1)'
-export const reddark = 'rgba(186, 17, 62, 1)'
 
 //source: https://coolors.co/4b93b1-8accc0-c0e1ca-f5ffc9-ff4073

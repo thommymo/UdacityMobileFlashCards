@@ -1,19 +1,35 @@
 import {
-  REQUEST_DESKS,
-  CREATE_NEW_DESK,
-  CREATE_NEW_QUESTION,
+  RECEIVE_DECKS,
+  CREATE_NEW_DECK,
+  CREATE_NEW_CARD,
+  UPDATE_SUCCESS,
 } from "../actions"
 
 function decks (state = initialFlashCards, action){
   switch(action.type){
-    case REQUEST_DESKS:
+    case RECEIVE_DECKS:
       //Todo: Gets all Desks and ads it to the Redux Store
       return state
-    case CREATE_NEW_DESK:
+    case CREATE_NEW_DECK:
+      return ( {
+        ...state,
+        [action.title]: {
+          title: action.title,
+          questions: [],
+          correct: 0,
+        }
+      })
       //Todo: Adds a new Desk to the Desks
+    //  return state
+    case CREATE_NEW_CARD:
+      console.log(state[action.deckname])
+      state[action.deckname].questions.push({question: action.question, answer: action.answer})
+      /*return Object.assign({}, state, {
+        state[action.title].questions:
+      })*/
       return state
-    case CREATE_NEW_QUESTION:
-      //Todo: Adds a new Question to a Desk
+    case UPDATE_SUCCESS:
+      state[action.deckname].correct = action.correct
       return state
     default:
       return state
@@ -32,7 +48,8 @@ const initialFlashCards = {
         question: 'Where do you make Ajax requests in React?',
         answer: 'The componentDidMount lifecycle event'
       }
-    ]
+    ],
+    correct: 0,
   },
   JavaScript: {
     title: 'JavaScript',
@@ -41,7 +58,8 @@ const initialFlashCards = {
         question: 'What is a closure?',
         answer: 'The combination of a function and the lexical environment within which that function was declared.'
       }
-    ]
+    ],
+    correct: 0,
   }
 }
 

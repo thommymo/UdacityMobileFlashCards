@@ -1,30 +1,42 @@
 import React, {Component} from 'react'
-import { Text, View } from 'react-native'
-import styled from 'styled-components/native'
-import { white, bluelight } from '../utils/colors'
+import { connect } from 'react-redux'
+import { BlueView, GridTop, GridBottom, BigBlueText, SmallBlueText, BlueLightView, Button, ButtonGreen, ButtonText } from '../components/styledComponents'
 
-const BlueText = styled.Text`
-  color: ${white};
-  font-family: "source-sans-pro-light";
-  font-size: 40px;
-    flex:1;
-`
-
-const BlueView = styled.View`
-  background-color: ${bluelight};
-  flex:1;
-  align-items: center;
-`
-
-class Decks extends Component {
+class Deck extends Component {
 
   render(){
+    const {decks, navigation} = this.props
+    const currentdeck = decks[navigation.state.params.title]
+
     return(
-      <BlueView>
-        <BlueText>Deck View</BlueText>
-      </BlueView>
+      <BlueLightView>
+        <GridTop>
+          <BigBlueText>
+            {navigation.state.params.title}
+          </BigBlueText>
+          <SmallBlueText>
+            {currentdeck.questions.length} Card(s)
+          </SmallBlueText>
+        </GridTop>
+        <GridBottom>
+          <Button onPress={() => navigation.navigate('addCard', {id: currentdeck.title})}>
+            <ButtonText>Add Card</ButtonText>
+          </Button>
+          { currentdeck.questions.length > 0 &&
+            <ButtonGreen onPress={() => navigation.navigate('Quiz', { title: `${currentdeck.title} Quiz`, id: currentdeck.title, counter: 0 })} >
+              <ButtonText>Start Quiz {currentdeck.title}</ButtonText>
+            </ButtonGreen>
+          }
+        </GridBottom>
+      </BlueLightView>
     )
   }
 }
 
-export default Decks
+function mapStateToProps (decks) {
+  return {
+    decks
+  }
+}
+
+export default connect(mapStateToProps)(Deck)
