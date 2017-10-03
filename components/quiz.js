@@ -5,6 +5,7 @@ import { white, bluegreendark, bluelight, blue, reddark, red, bluedark } from '.
 import {connect} from 'react-redux'
 import { TextLink, BlueView, GridTop, GridBottom, BigBlueText, SmallBlueText, BlueLightView, Button, ButtonGreen, ButtonText } from '../components/styledComponents'
 import { updateSuccess } from '../actions'
+import { NavigationActions } from 'react-navigation'
 
 const ButtonRed = Button.extend`
   background-color: ${red};
@@ -51,11 +52,20 @@ class Quiz extends Component {
     this.setState(() => ({showAnswer: false}))
   }
 
+
+
   render(){
     const {decks, navigation} = this.props
     const {id, counter} = navigation.state.params
     const currentdeck = decks[id]
     const progress = counter/currentdeck.questions.length
+
+    const resetNavigationAndMoveToMainView = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'Decks'})
+      ]
+    })
 
     return(
 
@@ -129,10 +139,10 @@ class Quiz extends Component {
               </SmallBlueText>
             </GridTop>
             <GridBottom>
-              <ButtonGreen onPress={() => navigation.navigate('Quiz', { title: `${currentdeck.title} Quiz`, id: currentdeck.title, counter: 0 })}>
+              <ButtonGreen onPress={() => navigation.navigate('Quiz', { title: `${currentdeck.title} Quiz`, id: currentdeck.title, counter: 0 }) }>
                 <ButtonText>Start again</ButtonText>
               </ButtonGreen>
-              <Button onPress={() => navigation.navigate('Decks')}>
+              <Button onPress={() => this.props.navigation.dispatch(resetNavigationAndMoveToMainView)}>
                 <ButtonText>Show all Desks</ButtonText>
               </Button>
             </GridBottom>
