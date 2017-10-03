@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { View } from 'react-native'
 import { MyKeyboardAvoidingView, MyTextInput, GridTop, GridBottom, BigBlueText, BlueLightView, Button, ButtonGreen, ButtonText } from '../components/styledComponents'
 import { createNewCard } from '../actions'
 import { addCardToDeck } from '../utils/api'
