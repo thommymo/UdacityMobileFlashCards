@@ -5,8 +5,8 @@ export const UPDATE_SUCCESS = 'UPDATE_SUCCESS'
 
 export function receiveDecks (decks) {
   return {
-    type: RECEIVE_DECK,
-    desks,
+    type: RECEIVE_DECKS,
+    decks,
   }
 }
 

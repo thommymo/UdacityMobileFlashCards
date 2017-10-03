@@ -16,19 +16,8 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 
 export default class App extends React.Component {
-  state = {
-    isReady: false,
-  };
-  render() {
-    if (!this.state.isReady) {
-      return(
-        <AppLoading
-          startAsync={this._cacheResourcesAsync}
-          onFinish={() => this.setState({ isReady: true })}
-          onError={console.warn}
-        />
-      )
-    }
+
+  render(){
     return (
       <Provider store={createStore(reducer)}>
         <View style={{flex: 1}}>
@@ -44,17 +33,7 @@ export default class App extends React.Component {
       </Provider>
     )
   }
-  async _cacheResourcesAsync() {
-    const fonts = [
-      require('./assets/fonts/SourceSansPro-Light.ttf'),
-    ];
 
-    for (let font of fonts) {
-      await Font.loadAsync({
-        'source-sans-pro-light': require('./assets/fonts/SourceSansPro-Light.ttf'),
-      })
-    }
-  }
 }
 
 //TODO: Create Component that extends TabNavigator to use css from styled components

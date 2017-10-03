@@ -4,6 +4,7 @@ import { MyKeyboardAvoidingView, MyTextInput, GridFooter, BlueView, GridTop, Gri
 import { View } from 'react-native'
 import { createNewDeck } from '../actions'
 import { gray, reddark } from '../utils/colors'
+import { saveDeckTitle } from '../utils/api'
 
 
 class addDeck extends Component {
@@ -18,6 +19,7 @@ class addDeck extends Component {
       this.setState({text: "Enter your Title", color: reddark})
     } else {
       this.props.dispatch(createNewDeck(this.state.text))
+      saveDeckTitle(this.state.text)
       this.props.navigation.navigate('Decks')
     }
   }

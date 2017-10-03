@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { MyKeyboardAvoidingView, MyTextInput, GridFooter, BlueView, GridTop, GridBottom, BigBlueText, SmallBlueText, BlueLightView, Button, ButtonGreen, ButtonText } from '../components/styledComponents'
 import { View } from 'react-native'
 import { createNewCard} from '../actions'
+import { addCardToDeck} from '../utils/api'
 import { gray, reddark } from '../utils/colors'
 
 
@@ -21,6 +22,7 @@ class addCard extends Component {
         this.setState({textAnswer: "Enter your Answer", color: reddark})
     } else {
       this.props.dispatch(createNewCard(this.props.navigation.state.params.id, this.state.textQuestion, this.state.textAnswer))
+      addCardToDeck(this.props.navigation.state.params.id, {question: this.state.textQuestion, answer: this.state.textAnswer})
       this.props.navigation.navigate('Deck', {title: this.props.navigation.state.params.id})
     }
   }
