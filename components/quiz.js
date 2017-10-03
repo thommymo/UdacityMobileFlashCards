@@ -3,7 +3,7 @@ import { Text, View, ProgressViewIOS, Platform, ProgressBarAndroid } from 'react
 import styled from 'styled-components/native'
 import { white, bluegreendark, bluelight, blue, reddark, red, bluedark } from '../utils/colors'
 import {connect} from 'react-redux'
-import { TextLink,BlueView, GridTop, GridBottom, BigBlueText, SmallBlueText, BlueLightView, Button, ButtonGreen, ButtonText } from '../components/styledComponents'
+import { TextLink, BlueView, GridTop, GridBottom, BigBlueText, SmallBlueText, BlueLightView, Button, ButtonGreen, ButtonText } from '../components/styledComponents'
 import { updateSuccess } from '../actions'
 
 const ButtonRed = Button.extend`
@@ -129,9 +129,12 @@ class Quiz extends Component {
               </SmallBlueText>
             </GridTop>
             <GridBottom>
-              <ButtonGreen onPress={() => navigation.navigate('Decks')}>
-                <ButtonText>Show all Desks</ButtonText>
+              <ButtonGreen onPress={() => navigation.navigate('Quiz', { title: `${currentdeck.title} Quiz`, id: currentdeck.title, counter: 0 })}>
+                <ButtonText>Start again</ButtonText>
               </ButtonGreen>
+              <Button onPress={() => navigation.navigate('Decks')}>
+                <ButtonText>Show all Desks</ButtonText>
+              </Button>
             </GridBottom>
           </BlueLightView>
         }
