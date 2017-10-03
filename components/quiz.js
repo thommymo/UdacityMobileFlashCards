@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
-import { Text, View, ProgressViewIOS, Platform, ProgressBarAndroid } from 'react-native'
+import { ProgressViewIOS, Platform, ProgressBarAndroid } from 'react-native'
 import styled from 'styled-components/native'
-import { white, bluegreendark, bluelight, blue, reddark, red, bluedark } from '../utils/colors'
-import {connect} from 'react-redux'
-import { TextLink, BlueView, GridTop, GridBottom, BigBlueText, SmallBlueText, BlueLightView, Button, ButtonGreen, ButtonText } from '../components/styledComponents'
+import { white, bluelight, blue, red, bluedark } from '../utils/colors'
+import { connect } from 'react-redux'
+import { TextLink, GridTop, GridBottom, BigBlueText, SmallBlueText, BlueLightView, Button, ButtonGreen, ButtonText } from '../components/styledComponents'
 import { updateSuccess } from '../actions'
 import { NavigationActions } from 'react-navigation'
-import {clearLocalNotification, setLocalNotification} from '../utils/notifications'
+import { clearLocalNotification, setLocalNotification } from '../utils/notifications'
 
 const ButtonRed = Button.extend`
   background-color: ${red};
@@ -15,6 +15,7 @@ const ButtonRed = Button.extend`
 const BlueText = BigBlueText.extend`
   font-size: 30px;
 `
+
 const RedButtonText = ButtonText.extend`
   color: ${bluedark};
 `
@@ -23,19 +24,16 @@ const ButtonSmall = Button.extend`
 
 `
 
-
 class Quiz extends Component {
 
   state = {
     showAnswer: false
   }
 
-
   answer = (value) => {
     const { decks, navigation } = this.props
     const { title, id, counter } = navigation.state.params
     const correct = counter===0 ? value : decks[id].correct + value
-
     // Count correct Answer and Store this in the Redux Store
     this.props.dispatch(updateSuccess(id, correct))
     // Go to next Question
@@ -65,19 +63,13 @@ class Quiz extends Component {
       then(setLocalNotification)
   }
 
-
-
-
-
   render(){
     const {decks, navigation} = this.props
     const {id, counter} = navigation.state.params
     const currentdeck = decks[id]
     const progress = counter/currentdeck.questions.length
 
-
     return(
-
       <BlueLightView>
         {Platform.OS === "ios"
           ?
@@ -96,7 +88,6 @@ class Quiz extends Component {
             indeterminate={false}
             style={{width: 200, marginTop: 20}}
           />
-
         }
         { counter<currentdeck.questions.length
           ?

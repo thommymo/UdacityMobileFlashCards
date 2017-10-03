@@ -1,4 +1,4 @@
-import { View, TouchableOpacity, Text, TextInput, KeyboardAvoidingView} from 'react-native'
+import { View, TouchableOpacity, Text, TextInput, KeyboardAvoidingView } from 'react-native'
 import styled from 'styled-components/native'
 import { gray, white, bluelight, blue, bluedark, bluegreendark } from '../utils/colors'
 

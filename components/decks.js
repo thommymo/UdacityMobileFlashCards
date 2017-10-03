@@ -2,16 +2,13 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { StackNavigator } from 'react-navigation'
 import {
-  BlueText,
   BlueView,
   DeckView,
   DeckTitleText,
   DeckSubTitleText,
-  BlueLightView,
   ButtonGreen,
   ButtonText,
   GridTop,
-  GridBottom,
   GridFooter
 } from '../components/styledComponents'
 import { Asset, AppLoading, Font } from 'expo';
@@ -19,15 +16,18 @@ import { getDecks } from '../utils/api'
 import { receiveDecks } from '../actions'
 
 class Decks extends Component {
+
   state = {
     isReady: false,
   };
+
   async _GetInitialDataAndCacheResourcesAsync(dispatch) {
     await getDecks().then((decks) => dispatch(receiveDecks(decks)))
     await Font.loadAsync({
       'source-sans-pro-light': require('../assets/fonts/SourceSansPro-Light.ttf'),
     })
   }
+  
   render() {
     const { decks, navigation } = this.props
     if (!this.state.isReady) {

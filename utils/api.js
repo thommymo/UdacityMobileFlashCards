@@ -1,7 +1,6 @@
 import  { AsyncStorage } from 'react-native'
 
-const KEY = "wefawefawfawf"
-
+const KEY = "STORAGE_KEY"
 
 export function getDecks(){
   //returns all Decks, Questions and Answers

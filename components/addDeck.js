@@ -1,12 +1,10 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { MyKeyboardAvoidingView, MyTextInput, GridFooter, BlueView, GridTop, GridBottom, BigBlueText, SmallBlueText, BlueLightView, Button, ButtonGreen, ButtonText } from '../components/styledComponents'
-import { View } from 'react-native'
+import { MyKeyboardAvoidingView, MyTextInput, GridTop, BigBlueText, BlueLightView, Button, ButtonGreen, ButtonText } from '../components/styledComponents'
 import { createNewDeck } from '../actions'
 import { gray, reddark } from '../utils/colors'
 import { saveDeckTitle } from '../utils/api'
 import { NavigationActions} from 'react-navigation'
-
 
 class addDeck extends Component {
 
@@ -16,14 +14,12 @@ class addDeck extends Component {
   }
 
   onSubmitForm = () => {
-    
     const resetNavigationAndMoveToMainView = NavigationActions.reset({
       index: 0,
       actions: [
         NavigationActions.navigate({ routeName: 'Decks'})
       ]
     })
-
     if (this.state.text === '' || this.state.text === 'Enter your Title'){
       this.setState({text: "Enter your Title", color: reddark})
     } else {
@@ -35,7 +31,6 @@ class addDeck extends Component {
 
   render(){
     return(
-
         <BlueLightView>
           <MyKeyboardAvoidingView>
             <GridTop>
@@ -59,7 +54,6 @@ class addDeck extends Component {
                 </GridTop>
           </MyKeyboardAvoidingView>
         </BlueLightView>
-
     )
   }
 }

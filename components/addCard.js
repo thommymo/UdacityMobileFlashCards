@@ -1,14 +1,11 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { MyKeyboardAvoidingView, MyTextInput, GridFooter, BlueView, GridTop, GridBottom, BigBlueText, SmallBlueText, BlueLightView, Button, ButtonGreen, ButtonText } from '../components/styledComponents'
-import { View } from 'react-native'
-import { createNewCard} from '../actions'
-import { addCardToDeck} from '../utils/api'
+import { MyKeyboardAvoidingView, MyTextInput, GridTop, GridBottom, BigBlueText, BlueLightView, Button, ButtonGreen, ButtonText } from '../components/styledComponents'
+import { createNewCard } from '../actions'
+import { addCardToDeck } from '../utils/api'
 import { gray, reddark } from '../utils/colors'
 
-
 class addCard extends Component {
-
   state = {
     textQuestion: 'Enter your Question',
     textAnswer: 'Enter your Answer',
@@ -29,7 +26,6 @@ class addCard extends Component {
 
   render(){
     return(
-
         <BlueLightView>
           <MyKeyboardAvoidingView>
             <GridTop>
@@ -62,7 +58,6 @@ class addCard extends Component {
             </GridTop>
           </MyKeyboardAvoidingView>
         </BlueLightView>
-
     )
   }
 }
