@@ -94,12 +94,11 @@ justify-content: flex-end;
 export const MyTextInput = styled.TextInput.attrs({
     placeholderTextColor:gray,
     autoCorrect:false,
-    maxLength:15,
   })`
   height: 50px;
   width: 300px;
   color: ${white};
-  font-size: 25px;
+  font-size: 20px;
   font-family: "source-sans-pro-light";
   text-align: center;
   align-items: center;

@@ -40,6 +40,7 @@ class addCard extends Component {
                 onChangeText = {(textQuestion) => this.setState({textQuestion})}
                 placeholder = {this.state.textQuestion}
                 placeholderTextColor = {this.state.color}
+                maxLength = {50}
               />
               <BigBlueText>
                 Answer
@@ -48,6 +49,7 @@ class addCard extends Component {
                 onChangeText = {(textAnswer) => this.setState({textAnswer})}
                 placeholder = {this.state.textAnswer}
                 placeholderTextColor = {this.state.color}
+                maxLength = {120}
               />
               <View style={{height:50}}/>
               <GridTop>

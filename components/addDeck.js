@@ -37,6 +37,7 @@ class addDeck extends Component {
                 onChangeText = {(text) => this.setState({text})}
                 placeholder = {this.state.text}
                 placeholderTextColor = {this.state.color}
+                maxLength = {15}
               />
               <View style={{height:50}}/>
               <GridTop>
