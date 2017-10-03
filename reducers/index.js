@@ -9,7 +9,6 @@ import { getDecks } from "../utils/api"
 function decks (state = {}, action){
   switch(action.type){
     case RECEIVE_DECKS:
-      console.log("RECEIVE_DECKS")
       return action.decks
     case CREATE_NEW_DECK:
       return ( {

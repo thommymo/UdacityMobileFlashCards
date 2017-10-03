@@ -31,7 +31,6 @@ class Decks extends Component {
   render() {
     const { decks, navigation } = this.props
     if (!this.state.isReady) {
-      console.log("LOAD")
       return(
         <AppLoading
           startAsync={() => this._GetInitialDataAndCacheResourcesAsync(this.props.dispatch)}

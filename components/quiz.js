@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import { TextLink, BlueView, GridTop, GridBottom, BigBlueText, SmallBlueText, BlueLightView, Button, ButtonGreen, ButtonText } from '../components/styledComponents'
 import { updateSuccess } from '../actions'
 import { NavigationActions } from 'react-navigation'
+import {clearLocalNotification, setLocalNotification} from '../utils/notifications'
 
 const ButtonRed = Button.extend`
   background-color: ${red};
@@ -29,6 +30,7 @@ class Quiz extends Component {
     showAnswer: false
   }
 
+
   answer = (value) => {
     const { decks, navigation } = this.props
     const { title, id, counter } = navigation.state.params
@@ -36,7 +38,7 @@ class Quiz extends Component {
 
     // Count correct Answer and Store this in the Redux Store
     this.props.dispatch(updateSuccess(id, correct))
-    // Go to next Qustion
+    // Go to next Question
     navigation.navigate('Quiz', {
       title,
       id,
@@ -51,19 +53,28 @@ class Quiz extends Component {
   showQuestion = () => {
     this.setState(() => ({showAnswer: false}))
   }
-  
+
+  finishQuiz = () => {
+    this.props.navigation.dispatch(NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'Decks'})
+      ]
+    }))
+    clearLocalNotification().
+      then(setLocalNotification)
+  }
+
+
+
+
+
   render(){
     const {decks, navigation} = this.props
     const {id, counter} = navigation.state.params
     const currentdeck = decks[id]
     const progress = counter/currentdeck.questions.length
 
-    const resetNavigationAndMoveToMainView = NavigationActions.reset({
-      index: 0,
-      actions: [
-        NavigationActions.navigate({ routeName: 'Decks'})
-      ]
-    })
 
     return(
 
@@ -125,7 +136,6 @@ class Quiz extends Component {
           <BlueLightView>
             <SmallBlueText>All questions answered!</SmallBlueText>
             <GridTop>
-
               <SmallBlueText>
                 Correct answers:
               </SmallBlueText>
@@ -140,7 +150,7 @@ class Quiz extends Component {
               <ButtonGreen onPress={() => navigation.navigate('Quiz', { title: `${currentdeck.title} Quiz`, id: currentdeck.title, counter: 0 }) }>
                 <ButtonText>Start again</ButtonText>
               </ButtonGreen>
-              <Button onPress={() => this.props.navigation.dispatch(resetNavigationAndMoveToMainView)}>
+              <Button onPress={() => this.finishQuiz()}>
                 <ButtonText>Show all Desks</ButtonText>
               </Button>
             </GridBottom>

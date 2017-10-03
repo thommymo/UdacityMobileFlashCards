@@ -14,8 +14,13 @@ import { StackNavigator } from 'react-navigation';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
+import { setLocalNotification } from './utils/notifications'
 
 export default class App extends React.Component {
+
+  componentDidMount (){
+    setLocalNotification()
+  }
 
   render(){
     return (
