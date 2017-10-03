@@ -11,6 +11,14 @@ To get started developing right away:
 * install all project dependencies with `yarn`
 * start the development server with `yarn start`
 
+## Tested With
+
+During development the App was tested using:
+
+* iPhone 6s, iOS 10.3.3
+* iOS Simulatoer, iPhone X, iOS 11.0.1
+* Android Emulator, Pixel API 26, Android 8.0.0
+
 ## Built With
 
 * [React](https://facebook.github.io/react/) - The web framework used
