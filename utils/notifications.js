@@ -4,6 +4,8 @@ import { AsyncStorage } from 'react-native'
 
 const NOTIFICATION_KEY = 'MobileFlashCards:notifications'
 
+//This code was more or less copied from the udacity react Udacifitness Project
+
 export function clearLocalNotification () {
   return AsyncStorage.removeItem(NOTIFICATION_KEY)
     .then(Notifications.cancelAllScheduledNotificationsAsync)
