@@ -5,6 +5,7 @@ import { View } from 'react-native'
 import { createNewDeck } from '../actions'
 import { gray, reddark } from '../utils/colors'
 import { saveDeckTitle } from '../utils/api'
+import { NavigationActions} from 'react-navigation'
 
 
 class addDeck extends Component {
@@ -15,12 +16,20 @@ class addDeck extends Component {
   }
 
   onSubmitForm = () => {
+    
+    const resetNavigationAndMoveToMainView = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'Decks'})
+      ]
+    })
+
     if (this.state.text === '' || this.state.text === 'Enter your Title'){
       this.setState({text: "Enter your Title", color: reddark})
     } else {
       this.props.dispatch(createNewDeck(this.state.text))
       saveDeckTitle(this.state.text)
-      this.props.navigation.navigate('Decks')
+      this.props.navigation.dispatch(resetNavigationAndMoveToMainView)
     }
   }
 

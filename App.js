@@ -36,14 +36,11 @@ export default class App extends React.Component {
 
 }
 
-//TODO: Create Component that extends TabNavigator to use css from styled components
-
 const Stack = StackNavigator({
   Decks: {
     screen: Decks,
     navigationOptions: {
       title: 'All Decks',
-
     },
   },
   Deck: {

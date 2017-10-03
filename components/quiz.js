@@ -51,9 +51,7 @@ class Quiz extends Component {
   showQuestion = () => {
     this.setState(() => ({showAnswer: false}))
   }
-
-
-
+  
   render(){
     const {decks, navigation} = this.props
     const {id, counter} = navigation.state.params
