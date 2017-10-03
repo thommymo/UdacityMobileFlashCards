@@ -19,22 +19,17 @@ import { getDecks } from '../utils/api'
 import { receiveDecks } from '../actions'
 
 class Decks extends Component {
-
   state = {
     isReady: false,
   };
-
   async _GetInitialDataAndCacheResourcesAsync(dispatch) {
     await getDecks().then((decks) => dispatch(receiveDecks(decks)))
     await Font.loadAsync({
       'source-sans-pro-light': require('../assets/fonts/SourceSansPro-Light.ttf'),
     })
   }
-
   render() {
-
     const { decks, navigation } = this.props
-
     if (!this.state.isReady) {
       console.log("LOAD")
       return(
@@ -45,7 +40,6 @@ class Decks extends Component {
         />
       )
     } else {
-
       return(
         <BlueView>
           <GridTop>
@@ -56,7 +50,6 @@ class Decks extends Component {
               </DeckView>
             ))}
           </GridTop>
-
           <GridFooter>
             <ButtonGreen onPress={() => navigation.navigate('addDeck')}>
               <ButtonText>Add Deck</ButtonText>
